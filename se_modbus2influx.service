@@ -1,0 +1,10 @@
+[Unit]
+Description=Solaredge Modbus to InfluxDB
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/bin/se_modbus2influx
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
