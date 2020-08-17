@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-from influxdb import InfluxDBClient
-import solaredge_modbus
-import json
-import time
-from operator import itemgetter
-from datetime import datetime
+try:
+    from influxdb import InfluxDBClient
+    import solaredge_modbus
+    import json
+    import time
+    from datetime import datetime
+except:
+    print("You need to install the packages 'influxdb' and 'solaredge_modbus' with pip")
 
 def create_db():
     client.create_database('solaredge_data')
