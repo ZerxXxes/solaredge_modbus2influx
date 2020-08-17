@@ -21,8 +21,11 @@ Data is collected every 5s giving much higher resolution than Solaredge's own ap
 ## Installation
 This install guide is tested on Ubuntu Linux.  
 Make sure you have installed [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/introduction/install/) and [Grafana](https://grafana.com/docs/grafana/latest/installation/debian/) first.  
-Then make sure your Solaredge inverter has Modbus over TCP enabled (This is disabled by default on newer firmware) otherwise scroll down for a guide on how to enable this. 
-  
+Then make sure your Solaredge inverter has Modbus over TCP enabled (This is disabled by default on newer firmware) otherwise scroll down for a guide on how to enable this.  
+You also need to have the two pip packages [influxdb](https://pypi.org/project/influxdb/) and [solaredge_modbus](https://pypi.org/project/solaredge-modbus/) installed.  
+You can install them like this:  
+``pip3 install influxdb solaredge-modbus``  
+
 **1.**  
 Start by cloneing this repo:  
 ``git clone https://github.com/ZerxXxes/solaredge_modbus2influx.git``  
