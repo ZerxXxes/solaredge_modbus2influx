@@ -23,8 +23,11 @@ This install guide is tested on Ubuntu Linux.
 Make sure you have installed [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/introduction/install/) and [Grafana](https://grafana.com/docs/grafana/latest/installation/debian/) first.  
 Then make sure your Solaredge inverter has Modbus over TCP enabled (This is disabled by default on newer firmware) otherwise scroll down for a guide on how to enable this. 
   
+**1.**  
 Start by cloneing this repo:  
 ``git clone https://github.com/ZerxXxes/solaredge_modbus2influx.git``  
+  
+**2.**  
 Then edit **se_modbus2influx.conf** with your own settings:  
 
     {
@@ -37,6 +40,7 @@ Then edit **se_modbus2influx.conf** with your own settings:
         "INFLUXDB_RETENTION_TIME":"12w"    <-- How long influxDB should save data in the database, set to INF to save data forever. (Might use a LOT of diskspace)
     }  
   
+**3.**  
 Then run ``sudo ./install.sh``  
 This will install the script as a systemd service.  
   
