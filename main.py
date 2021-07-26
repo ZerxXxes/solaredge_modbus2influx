@@ -3,7 +3,7 @@ try:
     from influxdb import InfluxDBClient
     import solaredge_modbus
     import json
-    import time
+    from time import monotonic, sleep
     from datetime import datetime
 except:
     print("You need to install the packages 'influxdb' and 'solaredge_modbus' with pip")
@@ -67,11 +67,11 @@ print("Collected data from the inverter will be printed to stdout every 5s the f
 
 #Start main lopp
 while True:
+    last_run_start = monotonic()
     if inverter.connected():
         try:
             inverter_data = inverter.read_all()
         except:
-            time.sleep(5)
             continue
         #data starting with c_ is static names like model name and serial number, save these as tags in influx
         for k,v in inverter_data.items():
@@ -90,10 +90,9 @@ while True:
             client.write_points(json_body)
         except:
             print("{} - ERROR! Can not write to influxDB".format(datetime.now()))
-        time.sleep(5)
     else:
         print("{} - ERROR! Not connected to Inverter".format(datetime.now()))
-        time.sleep(5)
     loop_count += 1
+    sleep(max(0, (last_run_start + 5 - monotonic())))
 
 
